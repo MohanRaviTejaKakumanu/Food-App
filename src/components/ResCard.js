@@ -1,8 +1,6 @@
 import { CDN_LOGO } from "../utils/constants";
 
 const ResCard = (props) => {
-  console.log(props);
-
   const { resData } = props;
   const { name, cuisines, avgRating, cloudinaryImageId, costForTwo } =
     resData?.info;
