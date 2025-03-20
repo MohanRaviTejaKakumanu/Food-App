@@ -1,10 +1,26 @@
 import ResCard from "./ResCard";
-import resList from "../utils/mockData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ShimmerUI from "./ShimmerUI";
+import { DATA_URL } from "../utils/constants";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState(resList);
-  return (
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(DATA_URL);
+    const json = await data.json();
+    setListOfRestaurants(
+      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    );
+  };
+
+  return listOfRestaurants.length === 0 ? (
+    <ShimmerUI />
+  ) : (
     <div className="body">
       <div className="filter-items">
         <div className="search">SEARCH</div>
