@@ -5,6 +5,10 @@ import { DATA_URL } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredListOfRestaurants, setFilteredListOfRestaurants] = useState(
+    []
+  );
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -14,7 +18,10 @@ const Body = () => {
     const data = await fetch(DATA_URL);
     const json = await data.json();
     setListOfRestaurants(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredListOfRestaurants(
+      json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
@@ -23,20 +30,35 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter-items">
-        <div className="search">SEARCH</div>
+        <div className="search">
+          <input
+            type="text"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          ></input>
+          <button
+            onClick={() => {
+              filteredSearch = listOfRestaurants.filter((x) =>
+                x.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilteredListOfRestaurants(filteredSearch);
+            }}
+          >
+            Submit
+          </button>
+        </div>
         <button
           className="filter"
           onClick={() => {
-            setListOfRestaurants(
-              (filter = resList.filter((x) => x.info.avgRating > 4.2))
-            );
+            filter = listOfRestaurants.filter((x) => x.info.avgRating > 4.2);
+            setFilteredListOfRestaurants(filter);
           }}
         >
           Top Rated Restaurants
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurants.map((eachRes) => (
+        {filteredListOfRestaurants.map((eachRes) => (
           <ResCard key={eachRes.info.id} resData={eachRes} />
         ))}
       </div>

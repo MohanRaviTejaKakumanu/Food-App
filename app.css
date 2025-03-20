@@ -26,6 +26,13 @@
 .nav-items > ul > li {
   padding: 15px;
   font-size: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.login_logout_btn {
+  height: 40px;
+  width: 80px;
 }
 
 .res-container {
