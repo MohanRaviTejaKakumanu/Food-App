@@ -30,6 +30,11 @@
   align-items: center;
 }
 
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 .login_logout_btn {
   height: 40px;
   width: 80px;

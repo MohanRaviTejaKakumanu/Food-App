@@ -2,7 +2,6 @@
   "name": "food-app",
   "version": "1.0.0",
   "description": "\"I am a developer\"",
-  "main": "app.js",
   "scripts": {
     "test": "jest"
   },
@@ -22,6 +21,7 @@
   },
   "dependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^6.4.0"
   }
 }
