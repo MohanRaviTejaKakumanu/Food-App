@@ -2,7 +2,7 @@ import { CDN_LOGO } from "../utils/constants";
 
 const ResCard = (props) => {
   const { resData } = props;
-  const { name, cuisines, avgRating, cloudinaryImageId, costForTwo } =
+  const { name, cuisines, avgRating, cloudinaryImageId, costForTwo, id } =
     resData?.info;
   const { deliveryTime } = resData?.info?.sla;
 
