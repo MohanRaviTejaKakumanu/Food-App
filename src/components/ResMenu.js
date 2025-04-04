@@ -1,7 +1,6 @@
 import useResMenu from "../utils/useResMenu";
 import ShimmerUI from "./ShimmerUI";
 import { useParams } from "react-router-dom";
-import { MENU_URL } from "../utils/constants";
 
 const ResMenu = () => {
   const { resId } = useParams();
