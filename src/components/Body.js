@@ -18,14 +18,16 @@ const Body = () => {
     <ShimmerUI />
   ) : (
     <div className="body">
-      <div className="filter-items">
-        <div className="search">
+      <div className="flex items-center justify-around">
+        <div className="p-2 m-2">
           <input
+            className="border cursor-pointer"
             type="text"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           ></input>
           <button
+            className="px-2 m-2 border rounded-sm cursor-pointer hover:border-2"
             onClick={() => {
               const filteredSearch = listOfRestaurants.filter((x) =>
                 x.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -36,22 +38,24 @@ const Body = () => {
             Submit
           </button>
         </div>
-        <button
-          className="filter"
-          onClick={() => {
-            filter = listOfRestaurants.filter((x) => x.info.avgRating > 4.2);
-            setFilteredListOfRestaurants(filter);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+        <div className="px-2 m-2">
+          <button
+            className="border px-5 py-0.5 rounded-sm cursor-pointer hover:border-2"
+            onClick={() => {
+              filter = listOfRestaurants.filter((x) => x.info.avgRating > 4.2);
+              setFilteredListOfRestaurants(filter);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap justify-evenly">
         {filteredListOfRestaurants.map((eachRes) => (
           <Link
             key={eachRes.info.id}
             to={"/restaurant/" + eachRes.info.id}
-            className="link"
+            className="p-2 m-2"
           >
             <ResCard resData={eachRes} />
           </Link>

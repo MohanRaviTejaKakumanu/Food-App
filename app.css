@@ -1,4 +1,4 @@
-.head {
+/* .head {
   display: flex;
   justify-content: space-between;
   border: 3px solid black;
@@ -72,4 +72,6 @@
   height: 400px;
   background-color: rgb(245, 237, 237);
   margin: 20px;
-}
+} */
+
+@import "tailwindcss";

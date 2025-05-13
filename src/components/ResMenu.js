@@ -1,6 +1,7 @@
 import useResMenu from "../utils/useResMenu";
-import ShimmerUI from "./ShimmerUI";
+import ShimmerUIMenu from "./ShimmerUIMenu";
 import { useParams } from "react-router-dom";
+import Rescategory from "./Rescategory";
 
 const ResMenu = () => {
   const { resId } = useParams();
@@ -8,39 +9,39 @@ const ResMenu = () => {
   const listOfResMenu = useResMenu(resId);
 
   if (listOfResMenu === null) {
-    return <ShimmerUI />;
+    return <ShimmerUIMenu />;
   }
 
   const { name, cuisines, costForTwo } =
     listOfResMenu.cards[2]?.card?.card?.info;
 
-  const itemCards =
-    listOfResMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-      ?.card?.itemCards ||
-    listOfResMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card?.itemCards ||
-    listOfResMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card
-      ?.card?.itemCards ||
-    [];
+  const categories =
+    listOfResMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (x) => {
+        return (
+          x.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+        );
+      }
+    );
+
+  console.log(categories);
 
   return (
-    <div className="res-menu">
-      <h1>{name}</h1>
-      <h3>
-        {cuisines.join(", ")} - {"Rs."}
-        {costForTwo / 100}
-      </h3>
-      <h2>Menu</h2>
-      <ol>
-        {itemCards.map((x) => {
-          return (
-            <li key={x.card.info.id} className="link">
-              {x.card.info.name} - {"Rs."}
-              {x.card.info.defaultPrice / 100 || x.card.info.price / 100}
-            </li>
-          );
-        })}
-      </ol>
+    <div className="text-center">
+      <div className="p-2 my-5">
+        <h1 className="font-bold">{name}</h1>
+        <h3 className="font-bold">
+          {cuisines.join(", ")} - {"Rs."}
+          {costForTwo / 100}
+        </h3>
+        {categories.map((category) => (
+          <Rescategory
+            key={category?.card?.card?.categoryId}
+            data={category?.card?.card}
+          />
+        ))}
+      </div>
     </div>
   );
 };
