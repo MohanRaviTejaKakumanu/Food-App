@@ -1,10 +1,14 @@
 import { CDN_LOGO } from "../utils/constants";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const ResCard = (props) => {
   const { resData } = props;
   const { name, cuisines, avgRating, cloudinaryImageId, costForTwo, id } =
     resData?.info;
   const { deliveryTime } = resData?.info?.sla;
+
+  const { loggedInUser } = useContext(UserContext);
 
   return (
     <div className="h-full">
@@ -21,6 +25,7 @@ const ResCard = (props) => {
         <h4>{avgRating} stars</h4>
         <h4>{costForTwo}</h4>
         <h4>{deliveryTime} Minutes</h4>
+        <h4>UserName: {loggedInUser}</h4>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import { CDN_LOGO } from "../utils/constants";
 
 const Rescategoryitem = ({ items }) => {
-  console.log(items);
   return (
     <div>
       {items.map((item) => (

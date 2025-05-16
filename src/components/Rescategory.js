@@ -24,10 +24,8 @@ const ResCategory = (props) => {
           <span>🔽</span>
         </div>
         {/* {accordian body} */}
-        <div className="flex">
-          <span>
-            {showItems && <Rescategoryitem items={props.data.itemCards} />}
-          </span>
+        <div className="">
+          {showItems && <Rescategoryitem items={props.data.itemCards} />}
         </div>
       </div>
     </div>
