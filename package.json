@@ -5,8 +5,7 @@
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",
-    "build": "node --max-old-space-size=1024 node_modules/.bin/parcel build index.html --no-optimize --no-source-maps",
-    "vercel-build": "npm install && npm run build"
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
